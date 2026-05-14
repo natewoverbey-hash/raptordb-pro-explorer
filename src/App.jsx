@@ -43,15 +43,15 @@ const journeyStages = [
   { id: "standard", label: "RaptorDB Standard", subtitle: "Enhanced OLTP", icon: <ServerIcon size={28} />, color: "#38BDF8",
     details: { title: "Improved Transactional Performance", points: ["PostgreSQL-based with proprietary enhancements", "Faster transactions vs. MariaDB", "Still serialized query processing", "Still must read full rows — no column-store"], metric: { label: "Transactions", value: "2.7x faster", sub: "vs. MariaDB (TPC-C)" } }},
   { id: "pro", label: "RaptorDB Pro", subtitle: "True HTAP", icon: <ZapIcon size={28} />, color: C.wasabi,
-    details: { title: "The Database for AI Agents, Reports & Workflows", points: ["Column-store index — reads only the data columns you need", "Parallel query processing — multiple queries simultaneously", "Data Archiving — offload historical data to live archive, queryable without restore", "Intraday Analytics — track KPIs throughout the day, not just daily snapshots", "SQL API for bring-your-own-BI — JDBC/ODBC direct to ServiceNow, zero-copy access", "Unlimited PA drilldowns — multi-dimensional breakdowns with no depth limits"], metric: { label: "Analytics", value: "27x faster", sub: "vs. MariaDB (TPC-H)" } }},
+    details: { title: "The Database for AI Agents, Reports & Workflows", points: ["Column-store index — reads only the data columns you need", "Parallel query processing — multiple queries simultaneously", "Live Archive — offload historical data to object storage, queryable without restore", "Intraday Analytics — track KPIs throughout the day, not just daily snapshots", "Live Connect (SQL API) — JDBC/ODBC direct to ServiceNow, zero-copy BYOBI access", "Unlimited PA drilldowns — multi-dimensional breakdowns with no depth limits"], metric: { label: "Analytics", value: "27x faster", sub: "vs. MariaDB (TPC-H)" } }},
 ];
 
 const htapFeatures = [
   { icon: <LayersIcon size={20} />, label: "Column-Store Index", desc: "Only reads the columns you need — skips irrelevant data entirely" },
   { icon: <GitBranchIcon size={20} />, label: "Parallel Processing", desc: "Splits queries across multiple cores simultaneously" },
   { icon: <ActivityIcon size={20} />, label: "Intraday Analytics", desc: "Track KPIs as they change throughout the day — powered by Data Snapshots (Pro-exclusive)" },
-  { icon: <DatabaseIcon size={20} />, label: "Data Archiving", desc: "Offload to live archive with 50% compression — 50 TB included, queryable without restore" },
-  { icon: <ServerIcon size={20} />, label: "SQL API & BYOBI", desc: "JDBC/ODBC drivers push SQL directly to RaptorDB Pro — zero-copy, full ACL support" },
+  { icon: <DatabaseIcon size={20} />, label: "Live Archive", desc: "Offload to object storage with 50% compression — 50 TB included, queryable without restore" },
+  { icon: <ServerIcon size={20} />, label: "Live Connect (SQL API)", desc: "JDBC/ODBC drivers push SQL directly to RaptorDB Pro — zero-copy, full ACL support" },
   { icon: <BotIcon size={20} />, label: "AI-Ready Architecture", desc: "Speed and scale AI agents need — archived data available to AI Search and LLMs" },
 ];
 
@@ -121,7 +121,7 @@ const useCases = [
       { metric: "30M", label: "items in single instance (Amadeus)", type: "proof" },
       { metric: "45%", label: "faster data processing (Amadeus)", type: "proof" },
     ],
-    proExclusive: ["SQL API (JDBC/ODBC)", "Zero-Copy BI Access", "Cross-Product HTAP Analytics"],
+    proExclusive: ["Live Connect (SQL API)", "Zero-Copy BYOBI Access", "Cross-Product HTAP Analytics"],
   },
   { id: "compliance", icon: <ShieldIcon size={32} />,
     title: "Compliance & Audit at Healthcare Scale",
@@ -140,13 +140,13 @@ const useCases = [
         { label: "Archived Data", value: "Live & queryable", icon: <SparklesIcon size={16} /> },
         { label: "VI Drill-Down", value: "Native in SN", icon: <ShieldIcon size={16} /> },
       ],
-      narrative: "HTAP engine runs compliance queries on 500M+ records without impacting daily workflows. Data Archiving (GA in Australia release) offloads historical records to a live archive in columnar format — queryable without restore, with 50% compression and 50 TB included. Immutable archives support HIPAA retention requirements; Bulk Restore enables GDPR right-to-erasure workflows. Archive data is available to AI Search and LLMs. Multi-level vulnerability drill-down directly in ServiceNow, no external export." },
+      narrative: "HTAP engine runs compliance queries on 500M+ records without impacting daily workflows. Live Archive (GA in Australia release) offloads historical records to a live archive in columnar format — queryable without restore, with 50% compression and 50 TB included. Immutable archives support HIPAA retention requirements; Bulk Restore enables GDPR right-to-erasure workflows. Archive data is available to AI Search and LLMs. Multi-level vulnerability drill-down directly in ServiceNow, no external export." },
     outcomes: [
       { metric: "10%", label: "decrease in unaddressed vulnerabilities", type: "target" },
       { metric: "50%", label: "data compression on archived records", type: "verified" },
       { metric: "FedRAMP", label: "deployed in compliant gov environments", type: "proof" },
     ],
-    proExclusive: ["Data Archiving (Live Archive)", "Bulk Restore & Archive Destroy", "50 TB Object Storage Included"],
+    proExclusive: ["Live Archive", "Bulk Restore & Archive Destroy", "50 TB Object Storage Included"],
   },
   { id: "ai-agentic", icon: <BotIcon size={32} />,
     title: "AI & Agentic Readiness",
@@ -190,13 +190,13 @@ const useCases = [
         { label: "Device Compliance", value: "One query", icon: <SparklesIcon size={16} /> },
         { label: "Predictive Insights", value: "Scalable", icon: <ActivityIcon size={16} /> },
       ],
-      narrative: "Column-store index processes CMDB queries across millions of CIs in seconds. Cross-product analytics correlate CMDB device records + ITSM incidents + vulnerability data + FSM maintenance in a single query. Data Archiving offloads historical device records to a live archive — queryable alongside current data, supporting lifecycle analytics and installed base intelligence as device counts grow." },
+      narrative: "Column-store index processes CMDB queries across millions of CIs in seconds. Cross-product analytics correlate CMDB device records + ITSM incidents + vulnerability data + FSM maintenance in a single query. Live Archive offloads historical device records to a live archive — queryable alongside current data, supporting lifecycle analytics and installed base intelligence as device counts grow." },
     outcomes: [
       { metric: "27x", label: "faster analytics on CMDB tables", type: "verified" },
       { metric: "73%", label: "faster report loading (MTS)", type: "proof" },
       { metric: "50%", label: "compression on archived device records", type: "verified" },
     ],
-    proExclusive: ["Column-Store on CMDB Tables", "Cross-Product Device Analytics", "Data Archiving for Device History"],
+    proExclusive: ["Column-Store on CMDB Tables", "Cross-Product Device Analytics", "Live Archive for Device History"],
   },
   { id: "vuln-response", icon: <ShieldIcon size={32} />,
     title: "Vulnerability Response at Scale",
@@ -215,13 +215,13 @@ const useCases = [
         { label: "Prioritization", value: "Real-time", icon: <SparklesIcon size={16} /> },
         { label: "Audit Readiness", value: "Instant query", icon: <ShieldIcon size={16} /> },
       ],
-      narrative: "Column-store index processes tens of millions of Vulnerable Items records in seconds — reading only the columns needed for risk scoring without scanning full rows. Parallel processing runs multiple vulnerability prioritization queries simultaneously. Security teams get real-time exploitability analysis on live data without exporting to external SIEM or analytics platforms. Data Archiving offloads historical VI records to a live archive — queryable without restore, supporting multi-year HIPAA audit requirements without performance degradation on the primary database." },
+      narrative: "Column-store index processes tens of millions of Vulnerable Items records in seconds — reading only the columns needed for risk scoring without scanning full rows. Parallel processing runs multiple vulnerability prioritization queries simultaneously. Security teams get real-time exploitability analysis on live data without exporting to external SIEM or analytics platforms. Live Archive offloads historical VI records to a live archive — queryable without restore, supporting multi-year HIPAA audit requirements without performance degradation on the primary database." },
     outcomes: [
       { metric: "27x", label: "faster analytics on VI tables", type: "verified" },
       { metric: "2-5%", label: "of vulns are exploitable — Pro finds them fast", type: "target" },
       { metric: "50%", label: "data compression on archived VI records", type: "verified" },
     ],
-    proExclusive: ["Column-Store on VI Tables", "Parallel Vulnerability Scoring", "Data Archiving for VI History"],
+    proExclusive: ["Column-Store on VI Tables", "Parallel Vulnerability Scoring", "Live Archive for VI History"],
   },
 ];
 
